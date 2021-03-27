@@ -9,8 +9,12 @@ public class Minesweeper {
 
         int bomb = k;
         while (bomb > 0) {
-            int row = (int) (Math.random() * m);
-            int col = (int) (Math.random() * n);
+            // int row = (int) (Math.random() * m);
+            // int col = (int) (Math.random() * n);
+
+            int rand = (int) (Math.random()*n*m);
+            int row = rand/n;
+            int col = rand - n*row;
             if (cells[row][col] == 0) {
                 cells[row][col] = Integer.MIN_VALUE;
                 bomb--;
@@ -19,7 +23,7 @@ public class Minesweeper {
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (cells[i][j] == -1) {
+                if (cells[i][j] < 0) {
                     if (i > 0) {
                         cells[i - 1][j]++;
                         if (j > 0) {
