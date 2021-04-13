@@ -9,7 +9,21 @@ public class MaximumSquareSubmatrix {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (a[i][j] == 1) {
-
+                    int tmpLength = 1;
+                    while (j + tmpLength < n && a[i][j + tmpLength] == 1) {
+                        tmpLength++;
+                    }
+                    for (int k = 1; k < tmpLength && i + k < n; k++) {
+                        for (int e = 0; e < tmpLength; e++) {
+                            if (a[i + k][j + e] != 1) {
+                                tmpLength = e;
+                                continue;
+                            }
+                        }
+                    }
+                    if (tmpLength > maxLength) {
+                        maxLength = tmpLength;
+                    }
                 }
             }
         }
