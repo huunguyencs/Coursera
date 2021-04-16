@@ -7,19 +7,19 @@ public class Huntingtons {
         int maxRepeats = 0;
         int currIndex = dna.indexOf("CAG", 0);
         while (currIndex != -1) {
-            int count = 0;
+            int count = 1;
             int curr = currIndex + 3;
             boolean isExit = false;
-            while (curr < len - 3 && !isExit) {
-                count += 1;
+            while (curr <= len - 3 && !isExit) {
                 if (!dna.substring(curr, curr + 3).equals("CAG")) {
                     isExit = true;
+                } else {
+                    count++;
                 }
                 curr += 3;
             }
-
             maxRepeats = maxRepeats < count ? count : maxRepeats;
-            currIndex = dna.indexOf("CAG", curr);
+            currIndex = dna.indexOf("CAG", curr - 2);
         }
         return maxRepeats;
     }
@@ -28,9 +28,9 @@ public class Huntingtons {
     // removed.
     public static String removeWhitespace(String s) {
         String res = s;
-        res = res.replaceAll(" ", "");
-        res = res.replaceAll("\t", "");
-        res = res.replaceAll("\n", "");
+        res = res.replace(" ", "");
+        res = res.replace("\n", "");
+        res = res.replace("\t", "");
         return res;
     }
 
