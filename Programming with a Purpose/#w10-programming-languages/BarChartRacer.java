@@ -30,13 +30,19 @@ public class BarChartRacer {
         String file = args[0];
         int k = Integer.parseInt(args[1]);
         In sc = new In(file);
+
+        // Read info chart
         String title = sc.readLine();
         String xAxis = sc.readLine();
         String source = sc.readLine();
         sc.readLine();
+
+        // Set up chart
         BarChart chart = new BarChart(title, xAxis, source);
         StdDraw.setCanvasSize(1000, 700);
         StdDraw.enableDoubleBuffering();
+
+        // Read file loop
         do {
             int n = Integer.parseInt(sc.readLine());
             String[] lines = new String[n];
@@ -44,10 +50,14 @@ public class BarChartRacer {
                 lines[i] = sc.readLine();
             }
             sc.readLine();
+
+            // draw a frame
             drawFrame(chart, lines, k);
             chart.draw();
             StdDraw.show();
             StdDraw.pause(200);
+
+            // Reset frame
             StdDraw.clear();
             chart.reset();
         } while (sc.hasNextLine());
