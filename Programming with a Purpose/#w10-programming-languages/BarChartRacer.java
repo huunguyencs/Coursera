@@ -55,7 +55,7 @@ public class BarChartRacer {
             drawFrame(chart, lines, k);
             chart.draw();
             StdDraw.show();
-            StdDraw.pause(200);
+            StdDraw.pause(100);
 
             // Reset frame
             StdDraw.clear();
