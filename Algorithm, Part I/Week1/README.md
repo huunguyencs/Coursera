@@ -1,4 +1,4 @@
-## Welcome to Algorithms, Part I
+## Week 1
 
 ### Hello assignment:
 
