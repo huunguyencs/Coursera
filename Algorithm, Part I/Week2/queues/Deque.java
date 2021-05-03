@@ -20,12 +20,17 @@ public class Deque<Item> implements Iterable<Item> {
         return size == 0;
     }
 
+    //
+    public int size() {
+        return size;
+    }
+
     // add the item to the front
     public void addFirst(Item item) {
         if (item == null) {
             throw new IllegalArgumentException();
         }
-        if (head == null) {
+        if (isEmpty()) {
             head = new Node(item);
             tail = head;
             size++;
@@ -42,15 +47,15 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null) {
             throw new IllegalArgumentException();
         }
-        if (tail == null) {
+        if (isEmpty()) {
             tail = new Node(item);
             head = tail;
             size++;
             return;
         }
-        Node tmp = new Node(item, null, tail);
-        tail.next = tmp;
-        tail = tmp;
+        Node tmp = tail;
+        tail = new Node(item, null, tmp);
+        tmp.next = tail;
         size++;
     }
 
@@ -59,11 +64,16 @@ public class Deque<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        Item first = head.data;
+        Item data = head.data;
         head = head.next;
-        head.prev = null;
+        if (head != null) {
+            head.prev = null;
+        } else {
+            head = null;
+            tail = null;
+        }
         size--;
-        return first;
+        return data;
     }
 
     // remove and return the item from the back
@@ -71,11 +81,18 @@ public class Deque<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        Item last = tail.data;
+
+        Item data = tail.data;
         tail = tail.prev;
-        tail.next = null;
+        if (tail != null) {
+            tail.next = null;
+        } else {
+            head = null;
+            tail = null;
+        }
         size--;
-        return last;
+        return data;
+
     }
 
     // return an iterator over items in order from front to back
@@ -86,14 +103,21 @@ public class Deque<Item> implements Iterable<Item> {
     // unit testing (required)
     public static void main(String[] args) {
         Deque<Integer> deque = new Deque<Integer>();
-        deque.addFirst(5);
-        deque.addLast(4);
-        deque.removeFirst();
-        deque.addFirst(8);
+        // deque.addFirst(5);
+        // deque.addLast(4);
+        // deque.removeFirst();
+        // deque.addFirst(8);
+        // deque.removeLast();
+        // for (Integer s : deque) {
+        // System.out.println(s);
+        // }
+        deque.addFirst(1);
+        deque.addFirst(2);
+        System.out.println(deque.removeLast());
+        System.out.println(deque.removeLast());
+        System.out.println(deque.isEmpty());
+        deque.addFirst(6);
         deque.removeLast();
-        for (Integer s : deque) {
-            System.out.println(s);
-        }
     }
 
     private class Node {
