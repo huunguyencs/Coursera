@@ -24,7 +24,7 @@ n = length(theta);
 J = (1/m)*(-y'*log(h_theta) - (1-y)'*log(1-h_theta)) + (lambda*sum(theta(2:n).^2))/(2*m);
 theta_ = theta;
 theta_(1) = 0;
-grad = (1/m)*(h_theta - y)'*X + lambda*theta_'/m;
+grad = (1/m)*X'*(h_theta - y) + lambda*theta_/m;
 
 % =============================================================
 
