@@ -4,6 +4,6 @@ Set up environment for java: https://algs4.cs.princeton.edu/code/
 
 Use:
 
-**javac-introcs** for **javac** command
+**javac-algs4** or **javac-introcs** for **javac** command
 
-**java-introcs** for **java** command
+**java-algs4** or **java-introcs** for **java** command
